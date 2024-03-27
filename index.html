@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <h1 class="heading">calculate your SPI</h1>
+
+  <div class="input-card" id='input-card'>
+
+    <div class="flex">
+      <div class="">
+        <label>subject :</label>
+        <input type="text" id="subject" placeholder="subject name">
+      </div>
+
+      <div class="">
+        <label>credit : </label>
+        <input type="number" id="credit" placeholder="credit" min="0" max="5.5" step="0.5" required>
+      </div>
+    </div>
+
+
+    <div class="checkbox_container">
+      <label class="ml-40">sessional :</label>
+      <input class="checkbox" type="checkbox" id="sessional_box" checked>
+
+      <label class="ml-40">termwork :</label>
+      <input class="checkbox" type="checkbox" id="termwork_box" checked>
+
+      <label class="ml-40">external :</label>
+      <input class="checkbox" type="checkbox" id="external_box" checked>
+    </div>
+
+
+    <!-- internal-recore -->
+
+    <div class="flex mt-10" id="sessional_input_container">
+      <p class="bold"><label class="main-lable">internal</label> : </p>
+      <div class="">
+        <label for="">sessional : </label>
+        <input class="mark-input" type="number" id="internal" placeholder="avg out of 36" min="0" max="36" step="6">
+      </div>
+
+      <div class="">
+        <label for="">attendance : </label>
+        <input class="mark-input" type="number" id="attendance" placeholder="mark out of 4" min="0" max="4" step="1" value="4" required>
+      </div>
+
+    </div>
+
+    <!-- termwork-record -->
+
+    <div class="flex" id="termwork_input_container">
+      <p class="bold"><label class="main-lable">termwork</label> : </p>
+
+      <div class="">
+        <label>practical/viva : </label>
+        <input class="mark-input" type="number" id="termwork" placeholder="prac/viva mark" min="0" max="50" step="5">
+      </div>
+
+      <div class="">
+        <label for="">out of</label>
+        <input class="mark-input" type="number" id="termwork_out_of" step="10" value="50">
+      </div>
+    </div>
+
+    <!-- enternal-record -->
+
+    <div class="flex" id="external_input_container">
+      <p class="bold"><label class="main-lable">external</label> : </p>
+
+      <div class="">
+        <label>semester exam : </label>
+        <input class="mark-input" type="number" id="external" placeholder="external mark" min="0" max="60" step="5">
+      </div>
+
+      <div class="">
+        <label for="">out of</label>
+        <input class="mark-input" type="number" id="external_out_of" placeholder="total external mark" step="10"
+          value="60">
+      </div>
+
+    </div>
+
+    <button onClick="cal()">Add Details</button>
+
+  </div>
+
+  <div class="mt-20" id="data-container">
+
+    <!-- <div class="subject_data flex">
+      <div class="sub_name w-20">mer</div>
+      <div class="w-80">
+        <div class="flex">
+          <div class="w-33">internal : 36/40</div>
+          <div class="w-33">termwork : 44/50</div>
+          <div class="w-33">external : 49/60</div>
+        </div>
+        <div class="mt-4 flex">
+          <div class="w-33">total : 129/150</div>
+          <div class="w-33">point : <span class="bolder">10.00</span></div>
+          <div class="w-33">grade : <span class="bolder">AA</span></div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+
+
+  <h1>SPI : <span id="spi">00</span></h1>
+
+  <div class="w-70" >
+    <p id="add_btn" class="d-none" onclick="showinput()">add another subject data</p>
+  </div>
+ 
+
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
