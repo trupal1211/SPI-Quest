@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>SPI-Quest</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="img/x-icon" href="./fevicon.jpeg">
 </head>
 
 <body>
 
   <h1 class="heading">calculate your SPI</h1>
+
+  
 
   <div class="input-card" id='input-card'>
 
@@ -50,7 +53,7 @@
 
       <div class="">
         <label for="">attendance : </label>
-        <input class="mark-input" type="number" id="attendance" placeholder="mark out of 4" min="0" max="4" step="1" value="4" required>
+        <input class="t-mark-input" type="number" id="attendance" placeholder="mark out of 4" min="0" max="4" step="1" value="4" required>
       </div>
 
     </div>
@@ -67,7 +70,7 @@
 
       <div class="">
         <label for="">out of</label>
-        <input class="mark-input" type="number" id="termwork_out_of" step="10" value="50">
+        <input class="t-mark-input" type="number" id="termwork_out_of" step="10" value="50">
       </div>
     </div>
 
@@ -76,22 +79,24 @@
     <div class="flex" id="external_input_container">
       <p class="bold"><label class="main-lable">external</label> : </p>
 
-      <div class="">
+      <div class="" >
         <label>semester exam : </label>
         <input class="mark-input" type="number" id="external" placeholder="external mark" min="0" max="60" step="5">
       </div>
 
       <div class="">
         <label for="">out of</label>
-        <input class="mark-input" type="number" id="external_out_of" placeholder="total external mark" step="10"
+        <input class="t-mark-input" type="number" id="external_out_of" placeholder="total external mark" step="10" min="0" max="60" 
           value="60">
       </div>
 
     </div>
 
-    <button onClick="cal()">Add Details</button>
+    <button onClick="cal()">submit</button>
 
   </div>
+
+
 
   <div class="mt-20" id="data-container">
 
@@ -104,9 +109,9 @@
           <div class="w-33">external : 49/60</div>
         </div>
         <div class="mt-4 flex">
-          <div class="w-33">total : 129/150</div>
-          <div class="w-33">point : <span class="bolder">10.00</span></div>
-          <div class="w-33">grade : <span class="bolder">AA</span></div>
+          <div class="w-33">total : <span class="">129/150</span></div>
+          <div class="w-33">point : <span class="bolder green">10.00</span></div>
+          <div class="w-33">grade : <span class="bolder green">AA</span></div>
         </div>
       </div>
     </div> -->
@@ -114,9 +119,9 @@
   </div>
 
 
-  <h1>SPI : <span id="spi">00</span></h1>
+  <h1>SPI : <span id="spi">--</span></h1>
 
-  <div class="w-70" >
+  <div class="add_btn_container" >
     <p id="add_btn" class="d-none" onclick="showinput()">add another subject data</p>
   </div>
  

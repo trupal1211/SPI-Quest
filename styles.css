@@ -1,6 +1,10 @@
 *{
-  font-family: cursive;
+  font-family:cursive;
   text-align: center;
+}
+
+body{
+  margin: 0;
 }
 
 h1{
@@ -9,10 +13,11 @@ h1{
 
 
 .input-card{
-  width: 95%;
-  margin: 6px auto;
+  width: 100%;
+  margin: 14px auto 24px;
   /* border: 1px solid; */
-  padding: 10px;
+  padding: 0px;
+  font-size: 16px;
 }
 
 .flex{
@@ -24,14 +29,14 @@ h1{
 }
 
 .subject-container{
-  width: 100%;
+  width: 100vw;
+  overflow-y: hidden;
 }
 
 input{
   padding: 2px;
   font-size: 16px;
   margin-left: 0;
-  
 }
 
 #subject{
@@ -43,7 +48,8 @@ input{
 }
 
 .ml-40{
-  margin-left: 40px;
+  margin-left:2.5vw;
+  margin-right:0.625vw;
 }
 
 .main-lable{
@@ -51,14 +57,19 @@ input{
 }
 
 .bold{
-  font-weight: 800;
+  font-weight: bold;
 }
 
 .bolder{
-  font-weight:900;
+  font-weight:bolder;
 }
+
 .mark-input{
   width: 10vw;
+}
+
+.t-mark-input{
+  width: 6vw !important;
 }
 
 .mt-20{
@@ -69,17 +80,27 @@ input{
   display: none;
 }
 
-
 .checkbox_container{
     margin-top: 10px;
     margin-bottom: 20px;
+    margin-right: 1.75vw;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+
+.checkbox{
+  margin-top: 6px;
+}
+
+
 button{
-  margin-top: 8px;
-  padding: 12px 20px;
+  margin:10px 0;
+  padding: 12px 40px;
   background-color: black;
   border-radius: 14px;
+  font-size: 16px;
   color: white;
   border: 0;
 }
@@ -90,13 +111,14 @@ button:hover{
 }
 
 .subject_data{
-  margin: 0 auto 15px ;
+  margin: 0 auto;
+  margin-bottom: 15px;
   padding: 5px;
-  width: 60vw;
-  border: 1px solid rgba(126, 126, 126, 0.898);
+  width: 50vw;
+  border: 1px solid rgba(147, 147, 147, 0.898);
   border-radius: 12px;
   background-color: rgb(238, 238, 238);
-  
+  box-sizing: border-box !important;
 }
 
 .w-33{
@@ -126,31 +148,269 @@ button:hover{
 }
 
 .green{
-  color: green;
+  color: rgb(12, 190, 27); 
 }
 
 .orange{
-  color: rgb(203, 136, 28);
+  color: rgb(231, 138, 24);
+}
+
+.tomato{
+  color: tomato;
+  
 }
 
 .red{
-  color: rgb(232, 44, 44);
+  color: rgb(224, 20, 20);
+  
+}
+
+.fw{
+  font-weight: 550;
+
 }
 
 #add_btn{
   width: 200px;
-  padding: 6px;
+  padding: 8px;
+  margin-top: 0;
   border-radius: 10px;
   cursor: pointer;
   color:royalblue;
   background-color: rgb(246, 248, 255);
   text-align:center;
+  text-decoration: underline;
 }
 
-.w-70{
+.add_btn_container{
   margin: 0 auto;
-  width: 60%;
+  width: 50vw;
   display: flex;
   justify-content: end;
+}
+
+@media(max-width:550px)
+{
+  #add_btn{
+    margin:0 auto;
+  }
+}
+
+@media(max-width:1300px){
+  .subject_data , .add_btn_container {
+    width: 60vw;
+  }
+ 
+}
+
+@media(max-width:1200px){
+  .subject_data , .add_btn_container{
+    width: 65vw;
+  }
+  
+}
+
+@media(max-width:1100px){
+  .subject_data , .add_btn_container{
+    width: 70vw;
+  }
+
+  .mark-input{
+    width: 12vw;
+  }
+}
+
+@media(max-width:950px){
+  .mark-input{
+    width:14vw ;
+  }
 
 }
+
+@media(max-width:900px){
+  .subject_data , .add_btn_container{
+    width: 75vw;
+  }
+
+}
+
+@media(max-width:850px){
+  .subject_data , .add_btn_container{
+    width: 80vw;
+  }
+
+  .mark-input{
+    width:16vw ;
+  }
+
+  #credit{
+    width: 9vw;
+  }
+}
+
+
+@media(max-width:770px){
+  .subject_data , .add_btn_container{
+    width: 85vw;
+  }
+
+  .mark-input{
+    width:18vw ;
+  }
+
+  #credit{
+    width: 10vw;
+  }
+
+}
+
+@media(max-width:710px){
+  .subject_data , .add_btn_container{
+    width: 90vw;
+  }
+
+  #credit{
+    width: 10vw;
+  }
+}
+
+@media(max-width:656px){
+  .subject_data{
+    width: 98vw;
+  }
+
+  .mark-input{
+    width:21vw ;
+  }
+
+  #subject{
+    width: 24vw;
+  }
+
+  #credit{
+    width: 12vw;
+  }
+}
+
+
+@media(max-width:500px){
+  .mark-input{
+    width: 26vw;   
+  }
+
+  #credit{
+    width: 16vw;
+  }
+
+  #subject{
+    width: 28vw;
+  }
+
+  .flex{
+    gap: 2vw;  
+  } 
+
+  h1{
+    margin: 20px auto 30px;
+  }
+
+  #subject{
+    width: 28vw;
+  }
+
+  .ml-40{
+    margin-left: 5vw;
+  }
+
+  .checkbox_container{
+    margin-right:  2.5vw;  
+  }
+
+  *{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+}
+
+@media (max-width:400px) {
+  .mark-input{
+    width: 22vw;   
+  } 
+  
+    #subject{
+      width: 32vw;
+    }
+  
+    #credit{
+      width: 18vw;
+    }
+    
+  
+}
+
+@media (max-width:370px) {
+  .mark-input{
+    width: 18vw;   
+  } 
+}
+
+@media (max-width:360px) {
+  .mark-input{
+    width: 15vw;   
+  } 
+
+  #subject{
+    width: 32vw;
+  }
+
+  .ml-40{
+    margin-left: 3vw;
+    margin-right: 2vw;
+  }
+}
+
+@media (max-width:335px) {
+  .mark-input{
+    width: 12vw;   
+  } 
+}
+
+@media (max-width:322px) {
+  .mark-input{
+    width: 10vw;   
+  } 
+
+  .checkbox_container{
+    margin-right:0;  
+  }
+
+  .checkbox{
+    width: 4vw;
+  }
+}
+
+@media (max-width:314px) {
+  .mark-input{
+    width: 8vw;   
+  } 
+
+  .ml-40{
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+  }
+}
+
+@media (max-width:307px) {
+  .mark-input{
+    width: 8vw;   
+  } 
+
+  .flex{
+    gap: 1vw;
+  }
+}
+
+
+
+
+
+

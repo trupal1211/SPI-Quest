@@ -9,7 +9,6 @@ const external_input_container = document.getElementById('external_input_contain
 let bool_sessional = 1;
 let bool_termwork = 1;
 let bool_external = 1;
-let total_subject_mark;
 
 s_checkbox.addEventListener('change', function () {
     if (this.checked) {
@@ -45,10 +44,11 @@ e_checkbox.addEventListener('change', function () {
 
 
 let all_subjects_details = [];
-let index=0;
+let index = 0;
 
 
 function cal() {
+
     let subject = document.getElementById('subject').value;
     let credit = document.getElementById('credit').value;
     let internal = document.getElementById('internal').value;
@@ -56,8 +56,30 @@ function cal() {
     let termwork = document.getElementById('termwork').value;
     let external = document.getElementById('external').value;
     let external_out_of = document.getElementById('external_out_of').value;
-    let termwork_out_of = document.getElementById('termwork_out_of').value
-    let subject_point, subject_grade,total_internal_mark;
+    let termwork_out_of = document.getElementById('termwork_out_of').value;
+
+    if (subject == "") {
+        alert("enter subject name")
+        return
+    }
+    if (credit == "") {
+        alert("enter subject credit")
+        return
+    }
+
+    if (bool_termwork && termwork == "") {
+        alert("enter termwork mark")
+        return
+    }
+    if (bool_external && external == "") {
+        alert("enter external mark")
+        return
+    }
+    if (bool_sessional && internal == "") {
+        alert("enter sessional mark")
+        return
+    }
+
 
 
     if (bool_sessional && (internal > 36 || attendance > 4)) {
@@ -73,26 +95,28 @@ function cal() {
             alert("check external marks again !!!")
         }
     }
- 
+
+    let total_internal_mark,total_subject_mark;
+
 
     if (!bool_termwork) {
         termwork = 0;
-        termwork_out_of=0
+        termwork_out_of = 0
     }
 
     if (!bool_external) {
         external = 0;
-        external_out_of=0
+        external_out_of = 0
     }
 
     if (!bool_sessional) {
         internal = 0;
         attendance = 0;
-        total_internal_mark=0;
+        total_internal_mark = 0;
     }
 
     if (bool_sessional) {
-        total_internal_mark=40;
+        total_internal_mark = 40;
 
         if (internal < 8) {
             alert('internal rem')
@@ -118,6 +142,10 @@ function cal() {
     let subject_percentage = ((subject_total * 100 / parseInt(total_subject_mark))).toFixed(2);
 
     // console.log("subject_total:" + subject_total)
+
+
+
+    let subject_point, subject_grade;
 
     if (84.5 <= subject_percentage && subject_percentage <= 100) {
         subject_point = 10.00;
@@ -148,18 +176,16 @@ function cal() {
         subject_grade = 'FF';
     }
 
-    if(bool_external)
-    {
-        if((parseInt(external)*100)/parseInt(external_out_of) < 35){
+    if (bool_external) {
+        if ((parseInt(external) * 100) / parseInt(external_out_of) < 35) {
             subject_point = 0;
             subject_grade = 'FF';
             alert('external rem');
         }
     }
 
-    if(bool_termwork)
-    {
-        if((parseInt(termwork)*100)/parseInt(termwork_out_of) < 35){
+    if (bool_termwork) {
+        if ((parseInt(termwork) * 100) / parseInt(termwork_out_of) < 35) {
             subject_point = 0;
             subject_grade = 'FF';
             alert('termwork is not accepted');
@@ -168,38 +194,38 @@ function cal() {
 
 
 
-    let total_internal = parseInt(internal) + parseInt(attendance) ;
+    let total_internal = parseInt(internal) + parseInt(attendance);
 
     let subject_details = {
         name: subject,
         credit: credit,
         internal: total_internal,
         attendance: attendance,
-        total_internal:total_internal_mark,
+        total_internal: total_internal_mark,
         termwork: termwork,
-        total_termwork:termwork_out_of,
+        total_termwork: termwork_out_of,
         external: external,
-        total_external:external_out_of,
-        subject_total:subject_total,
-        total_mark:total_subject_mark,
+        total_external: external_out_of,
+        subject_total: subject_total,
+        total_mark: total_subject_mark,
         subject_point: subject_point,
         subject_grade: subject_grade,
     }
 
-    
-    let checkuser = all_subjects_details.filter((currentsubject)=>{
+
+    let checkuser = all_subjects_details.filter((currentsubject) => {
         return currentsubject.name == subject_details.name
     })
 
-    if(checkuser.length == 0){
+    if (checkuser.length == 0) {
         all_subjects_details.push(subject_details)
     }
-    else{
-      window.alert("subject already exist");
-      return;
+    else {
+        window.alert("subject already exist");
+        return;
     }
 
-    
+
     let subject_point_sum = 0;
     let total_subject_point = 0;
 
@@ -208,8 +234,8 @@ function cal() {
         total_subject_point += parseInt(all_subjects_details[i].credit) * 10;
     }
     // console.log(parseInt(subject_point_sum))
-    
-    let spi = ((subject_point_sum*10) / total_subject_point).toFixed(2);
+
+    let spi = ((subject_point_sum * 10) / total_subject_point).toFixed(2);
 
 
     console.log("subject:" + subject + " credit:" + credit + " internal:" + internal + " termwork: " + termwork + " external: " + external);
@@ -228,118 +254,123 @@ function cal() {
 
 
     display(index);
-    
-    index=parseInt(index)+1;
-    
-    let input_card=document.getElementById('input-card')
+
+    index = parseInt(index) + 1;
+
+    let input_card = document.getElementById('input-card')
     input_card.classList.add('d-none')
 
-    let add_btn=document.getElementById('add_btn')
+    let add_btn = document.getElementById('add_btn')
     add_btn.classList.remove('d-none')
 
-    let spiid=document.getElementById('spi')
-    spiid.innerText=spi;
-    
-if(spi>=8.00 && spi<=10)
-{
-    spiid.classList.add('bolder','green')
-}
-else if(spi>=7.0 && spi< 7.99 )
-{
-    spiid.classList.add('bolder','orange')
-}
-else
-{
-    spiid.classList.add('bolder','red')
-}
+    let spiid = document.getElementById('spi')
+    spiid.innerText = spi;
+
+    if (spi >= 8.50 && spi <= 10) {
+        spiid.classList.add('bolder', 'green')
+    }
+    else if (spi >= 7.5 && spi < 8.49) {
+        spiid.classList.add('bolder', 'orange')
+    }
+    else if (spi >= 6.5 && spi < 7.49) {
+        spiid.classList.add('bolder', 'tomato')
+    }
+    else {
+        spiid.classList.add('bolder', 'red')
+    }
 
 
 }
 
-function display(i)
-{
+function display(i) {
 
 
-let dataContainer = document.getElementById('data-container');
+    let dataContainer = document.getElementById('data-container');
 
-let divsub_data=document.createElement('div')
-divsub_data.classList.add('subject_data','flex')
-dataContainer.appendChild(divsub_data)
+    let divsub_data = document.createElement('div')
+    divsub_data.classList.add('subject_data', 'flex')
+    dataContainer.appendChild(divsub_data)
 
-let divsub_name=document.createElement('div')
-divsub_name.classList.add('sub_name','w-20')
-divsub_name.innerText=all_subjects_details[i].name;
-divsub_data.appendChild(divsub_name)
+    let divsub_name = document.createElement('div')
+    divsub_name.classList.add('sub_name', 'w-20')
+    divsub_name.innerText = all_subjects_details[i].name;
+    divsub_data.appendChild(divsub_name)
 
-let divw_80=document.createElement('div')
-divw_80.classList.add('w-80')
-divsub_data.appendChild(divw_80)
+    let divw_80 = document.createElement('div')
+    divw_80.classList.add('w-80')
+    divsub_data.appendChild(divw_80)
 
-let flex1=document.createElement('div')
-flex1.classList.add('flex')
+    let flex1 = document.createElement('div')
+    flex1.classList.add('flex')
 
-let flex2=document.createElement('div')
-flex2.classList.add('flex','mt-4')
-divw_80.appendChild(flex1)
-divw_80.appendChild(flex2)
+    let flex2 = document.createElement('div')
+    flex2.classList.add('flex', 'mt-4')
+    divw_80.appendChild(flex1)
+    divw_80.appendChild(flex2)
 
-let divs_mark=document.createElement('div')
-let divt_mark=document.createElement('div')
-let dive_mark=document.createElement('div')
-divs_mark.innerText='internal : ' + all_subjects_details[i].internal + '/'+ all_subjects_details[i].total_internal;
-divt_mark.innerText='termwork : ' + all_subjects_details[i].termwork + '/' + all_subjects_details[i].total_termwork;
-dive_mark.innerText='external : ' + all_subjects_details[i].external + '/' + all_subjects_details[i].total_external;
-divs_mark.classList.add('w-33')
-divt_mark.classList.add('w-33')
-dive_mark.classList.add('w-33')
-flex1.appendChild(divs_mark)
-flex1.appendChild(divt_mark)
-flex1.appendChild(dive_mark)
+    let divs_mark = document.createElement('div')
+    let divt_mark = document.createElement('div')
+    let dive_mark = document.createElement('div')
+    divs_mark.innerText = 'internal : ' + all_subjects_details[i].internal + '/' + all_subjects_details[i].total_internal;
+    divt_mark.innerText = 'termwork : ' + all_subjects_details[i].termwork + '/' + all_subjects_details[i].total_termwork;
+    dive_mark.innerText = 'external : ' + all_subjects_details[i].external + '/' + all_subjects_details[i].total_external;
+    divs_mark.classList.add('w-33')
+    divt_mark.classList.add('w-33')
+    dive_mark.classList.add('w-33')
+    flex1.appendChild(divs_mark)
+    flex1.appendChild(divt_mark)
+    flex1.appendChild(dive_mark)
 
-let divtotal_mark=document.createElement('div')
-let div_point=document.createElement('div')
-let div_grade=document.createElement('div')
-divtotal_mark.innerText='total : ' + all_subjects_details[i].subject_total + '/' + all_subjects_details[i].total_mark;
-div_point.innerText='point : ' 
-div_grade.innerText='grade : '
-divtotal_mark.classList.add('w-33')
-div_point.classList.add('w-33')
-div_grade.classList.add('w-33')
+    let divtotal_mark = document.createElement('div')
+    let div_point = document.createElement('div')
+    let div_grade = document.createElement('div')
+    divtotal_mark.innerText = 'total : '
+    div_point.innerText = 'point : '
+    div_grade.innerText = 'grade : '
+    divtotal_mark.classList.add('w-33')
+    div_point.classList.add('w-33')
+    div_grade.classList.add('w-33')
 
-flex2.appendChild(divtotal_mark)
-flex2.appendChild(div_point)
-flex2.appendChild(div_grade)
+    flex2.appendChild(divtotal_mark)
+    flex2.appendChild(div_point)
+    flex2.appendChild(div_grade)
 
-let span_point = document.createElement('span')
-let span_grade = document.createElement('span')
-span_point.innerText= all_subjects_details[i].subject_point
-span_grade.innerText= all_subjects_details[i].subject_grade
+    let span_total = document.createElement('span')
+    let span_point = document.createElement('span')
+    let span_grade = document.createElement('span')
+    span_point.innerText = all_subjects_details[i].subject_point
+    span_grade.innerText = all_subjects_details[i].subject_grade
+    span_total.innerText =  all_subjects_details[i].subject_total + '/' + all_subjects_details[i].total_mark ;
 
-if(all_subjects_details[i].subject_point>=8.00 && all_subjects_details[i].subject_point<=10)
-{
-    span_point.classList.add('bolder','green')
-    span_grade.classList.add('bolder','green')
+
+    if (all_subjects_details[i].subject_point == 10.00 || all_subjects_details[i].subject_point == 9.00 ) {
+        span_point.classList.add('bolder', 'green')
+        span_grade.classList.add('bolder', 'green')
+    }
+    else if (all_subjects_details[i].subject_point == 8.0) {
+        span_point.classList.add('bolder', 'orange')
+        span_grade.classList.add('bolder', 'orange')
+    }
+    else if (all_subjects_details[i].subject_point == 7.0) {
+        span_point.classList.add('bolder', 'tomato')
+        span_grade.classList.add('bolder', 'tomato')
+    }
+    else {
+        span_point.classList.add('bolder', 'red')
+        span_grade.classList.add('bolder', 'red')
+    }
+
+    div_point.appendChild(span_point)
+    div_grade.appendChild(span_grade)
+    divtotal_mark.appendChild(span_total)
+
 }
-else if(all_subjects_details[i].subject_point>=7.0 && all_subjects_details[i].subject_point< 7.99 )
-{
-    span_point.classList.add('bolder','orange')
-    span_grade.classList.add('bolder','orange') 
-}
-else
-{
-    span_point.classList.add('bolder','red')
-    span_grade.classList.add('bolder','red')
-}
 
-div_point.appendChild(span_point)
-div_grade.appendChild(span_grade)
-
-}
-
-function showinput(){
-    let input_card=document.getElementById('input-card')
+function showinput() {
+    let input_card = document.getElementById('input-card')
     input_card.classList.remove('d-none')
 
-    let add_btn=document.getElementById('add_btn')
+    let add_btn = document.getElementById('add_btn')
     add_btn.classList.add('d-none')
 }
+
