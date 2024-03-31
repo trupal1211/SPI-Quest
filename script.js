@@ -84,15 +84,18 @@ function cal() {
 
     if (bool_sessional && (internal > 36 || attendance > 4)) {
         alert("check internal/attandace marks again !!!")
+        return
     }
     if ((bool_termwork)) {
         if (parseInt(termwork_out_of) - parseInt(termwork) < 0) {
             alert("check termwork marks again !!!")
+            return
         }
     }
     if (bool_external) {
         if (parseInt(external_out_of) - parseInt(external) < 0) {
             alert("check external marks again !!!")
+            return
         }
     }
 
